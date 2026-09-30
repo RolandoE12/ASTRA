@@ -1,0 +1,241 @@
+/* ==========================================================================
+   STUDENT ACTIVITIES HUD SUBPAGE (FIXED HEIGHT & CLEAR CONTROLS)
+   ========================================================================== */
+
+
+
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Rajdhani:wght@500;600;700&display=swap');
+
+/* Main subpage overlay positioned in center frame */
+.hud-subpage {
+    position: absolute;
+    top: 51%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 88%;
+    max-width: 780px;
+    z-index: 100; /* Higher z-index to sit cleanly above background */
+    font-family: 'Orbitron', 'Rajdhani', sans-serif;
+    color: #ffffff;
+    pointer-events: auto;
+}
+
+.hud-subpage.active {
+    display: block !important;
+    animation: hudPopIn 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+.hud-subpage.closing {
+    animation: hudPopOut 0.25s ease-in forwards;
+}
+
+.hud-subpage-inner {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+/* =========================================
+   TOP CONTROL BAR (BACK & PREV/NEXT BUTTONS)
+========================================= */
+.hud-top-bar {
+    margin-top: -100px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    background: rgba(2, 14, 30, 0.85); /* Dark solid backing so background text doesn't bleed through */
+    padding: 6px 12px;
+    border-radius: 4px;
+    border: 1px solid rgba(0, 240, 255, 0.3);
+    backdrop-filter: blur(8px);
+}
+
+/* Red Back Button */
+.hud-btn-red {
+    background: rgba(255, 42, 75, 0.2);
+    border: 1.5px solid #ff2a4b;
+    color: #ff2a4b;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 6px 14px;
+    border-radius: 3px;
+    cursor: pointer;
+    letter-spacing: 1px;
+    box-shadow: 0 0 10px rgba(255, 42, 75, 0.4);
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    text-transform: uppercase;
+}
+
+.hud-btn-red:hover {
+    background: #ff2a4b;
+    color: #ffffff;
+    box-shadow: 0 0 16px rgba(255, 42, 75, 0.9);
+}
+
+/* Pagination Controls */
+.hud-pagination {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.hud-page-indicator {
+    font-size: 0.72rem;
+    letter-spacing: 1.5px;
+    color: #ffffff;
+    font-weight: 700;
+}
+
+/* Highly visible PREV & NEXT buttons */
+.hud-nav-btn {
+    background: rgba(0, 240, 255, 0.1);
+    border: 1.5px solid rgba(0, 240, 255, 0.3);
+    color: rgba(255, 255, 255, 0.4);
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 5px 14px;
+    border-radius: 3px;
+    cursor: not-allowed;
+    transition: all 0.2s ease;
+}
+
+.hud-nav-btn.active {
+    background: rgba(0, 240, 255, 0.25);
+    border: 1.5px solid #00f0ff;
+    color: #00f0ff;
+    cursor: pointer;
+    box-shadow: 0 0 12px rgba(0, 240, 255, 0.6);
+}
+
+.hud-nav-btn.active:hover {
+    background: #00f0ff;
+    color: #000000;
+    box-shadow: 0 0 18px rgba(0, 240, 255, 1);
+}
+
+/* =========================================
+   FIXED SIZE HUD CARD CONTAINER
+========================================= */
+.hud-content-card {
+    background: rgba(2, 14, 30, 0.92);
+    border: 1.5px solid #00f0ff;
+    border-radius: 6px;
+    padding: 20px 24px;
+    height: 310px; /* Fixed height so card does not jump/resize between pages */
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 0 25px rgba(0, 240, 255, 0.25), 
+                inset 0 0 20px rgba(0, 240, 255, 0.08),
+                inset 0 0 30px rgba(0, 0, 0, 0.95);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+.hud-card-title {
+    color: #00f0ff;
+    font-size: 1.05rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    margin-top: 0;
+    margin-bottom: 12px;
+    text-shadow: 0 0 10px rgba(0, 240, 255, 0.8);
+    text-transform: uppercase;
+    text-align: center;
+    flex-shrink: 0;
+}
+
+/* Scrollable body in case content runs long */
+.hud-card-body {
+    font-size: 0.82rem;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.9);
+    flex-grow: 1;
+    overflow-y: auto;
+    padding-right: 6px;
+}
+
+/* Custom Cyan Scrollbar */
+.hud-card-body::-webkit-scrollbar {
+    width: 4px;
+}
+.hud-card-body::-webkit-scrollbar-thumb {
+    background: #00f0ff;
+    border-radius: 2px;
+}
+
+.hud-text-highlight {
+    margin-top: 0;
+    margin-bottom: 8px;
+    color: #ffffff;
+    font-weight: 600;
+}
+
+.hud-list {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+}
+
+.hud-list li {
+    position: relative;
+    padding-left: 18px;
+    margin-bottom: 8px;
+}
+
+.hud-list li::before {
+    content: '►';
+    position: absolute;
+    left: 0;
+    color: #00f0ff;
+    font-size: 0.6rem;
+    top: 2px;
+}
+
+.hud-list strong {
+    color: #00f0ff;
+}
+
+/* =========================================
+   ANIMATIONS
+========================================= */
+@keyframes hudPopIn {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -46%) scale(0.92);
+        filter: blur(8px);
+    }
+    100% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+        filter: blur(0);
+    }
+}
+
+@keyframes hudPopOut {
+    0% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+        filter: blur(0);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(-50%, -46%) scale(0.92);
+        filter: blur(8px);
+    }
+}
+/* Class applied when student or library panel is active */
+.osas-element-disabled {
+    filter: blur(8px) !important;
+    opacity: 0.25 !important;
+    pointer-events: none !important;
+    cursor: not-allowed !important;
+    user-select: none !important;
+}   

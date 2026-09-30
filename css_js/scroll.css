@@ -1,0 +1,124 @@
+/*==========================================
+ CYBER SCROLLBAR - ALL PAGES
+==========================================*/
+
+/* Firefox */
+*{
+    scrollbar-width: thin;
+    scrollbar-color: #00ffff rgba(0,20,40,.4);
+}
+
+/* Chrome, Edge, Opera */
+::-webkit-scrollbar{
+
+    width:14px;
+    height:14px;
+
+}
+
+::-webkit-scrollbar-track{
+
+    background:rgba(0,20,40,.45);
+
+    border-left:1px solid rgba(0,255,255,.25);
+
+    border-radius:20px;
+
+    box-shadow:
+        inset 0 0 10px rgba(0,255,255,.15);
+
+}
+
+::-webkit-scrollbar-thumb{
+
+    background:linear-gradient(
+        180deg,
+        #64f6ff,
+        #00ffff,
+        #0aaeff
+    );
+
+    border-radius:20px;
+
+    border:2px solid rgba(0,20,40,.4);
+
+    box-shadow:
+        0 0 10px cyan,
+        0 0 20px rgba(0,255,255,.7);
+
+    transition:.3s;
+
+}
+
+::-webkit-scrollbar-thumb:hover{
+
+    background:linear-gradient(
+        180deg,
+        #ffffff,
+        #00ffff,
+        #64f6ff
+    );
+
+    box-shadow:
+        0 0 20px cyan,
+        0 0 40px cyan,
+        0 0 60px cyan;
+
+}
+
+::-webkit-scrollbar-corner{
+
+    background:rgba(0,20,40,.45);
+
+}
+
+
+
+.information-page,
+.courses-page,
+.osas-page,
+.admission-page,
+.freshmen-page,
+.transferees-page,
+.requirements-page,
+.scholarships-page{
+
+    overflow-y:auto;
+    overflow-x:hidden;
+
+    scroll-behavior:smooth;
+
+}
+
+
+@keyframes scrollbarGlow{
+
+    0%{
+
+        box-shadow:
+            0 0 8px cyan;
+
+    }
+
+    50%{
+
+        box-shadow:
+            0 0 20px cyan,
+            0 0 35px #00ffff;
+
+    }
+
+    100%{
+
+        box-shadow:
+            0 0 8px cyan;
+
+    }
+
+}
+
+::-webkit-scrollbar-thumb{
+
+    animation:scrollbarGlow 2s infinite;
+
+}

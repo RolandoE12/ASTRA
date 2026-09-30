@@ -1,0 +1,25 @@
+SCHOOL NAME:
+Core Gateway College Inc.
+
+COURSES:
+BSCS means Bachelor of Science in Computer Science.
+BSBA means Bachelor of Science in Business Administration.
+BSED means Bachelor of Secondary Education.
+BEED means Bachelor of Elementary Education.
+
+OSAS:
+The Office of Student Affairs and Services handles student activities,
+student organizations, guidance, and student welfare.
+
+LIBRARY:
+The school library provides books, research materials, and study areas.
+
+EMERGENCY HOTLINE:
+School emergency hotline is 09123456789.
+
+EVENTS:
+College Foundation Day will happen on July 10, 2026.
+
+STUDENT ACTIVITIES:
+The CSSC is the highest governing student body responsible for organizing
+student activities and representing students.

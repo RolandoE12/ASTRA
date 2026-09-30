@@ -1,0 +1,288 @@
+/* =========================================================
+   OSAS DETAIL PANEL
+   Matches the COURSES detail / HUD information style
+   ========================================================= */
+
+.osas-detail-overlay{
+    position:fixed;
+    inset:0;
+    background:rgba(0, 8, 20, .62);
+    backdrop-filter:blur(7px);
+    -webkit-backdrop-filter:blur(7px);
+    z-index:9000;
+    display:none;
+    pointer-events:auto;
+}
+
+.osas-detail-overlay.active{
+    display:block !important;
+}
+
+.osas-detail-panel{
+    position:fixed;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    width:min(780px,88vw);
+    z-index:9001;
+    font-family:'Orbitron','Rajdhani',sans-serif;
+    color:#fff;
+    display:none;
+}
+
+.osas-detail-panel.active{
+    display:block !important;
+    animation:osasDetailIn .35s cubic-bezier(.175,.885,.32,1.275) forwards;
+}
+
+.osas-detail-panel.closing{
+    animation:osasDetailOut .25s ease-in forwards;
+}
+
+.osas-detail-inner{
+    width:100%;
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+}
+
+.osas-detail-topbar{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    width:100%;
+    background:rgba(2,14,30,.90);
+    padding:6px 12px;
+    border:1px solid rgba(0,240,255,.3);
+    border-radius:4px;
+    box-sizing:border-box;
+    backdrop-filter:blur(8px);
+}
+
+.osas-detail-back{
+    background:rgba(255,42,75,.20);
+    border:1.5px solid #ff2a4b;
+    color:#ff2a4b;
+    font-family:'Orbitron',sans-serif;
+    font-size:.72rem;
+    font-weight:700;
+    padding:6px 14px;
+    border-radius:3px;
+    cursor:pointer;
+    letter-spacing:1px;
+    box-shadow:0 0 10px rgba(255,42,75,.4);
+    transition:.2s;
+    display:inline-flex;
+    align-items:center;
+    gap:6px;
+}
+
+.osas-detail-back:hover{
+    background:#ff2a4b;
+    color:#fff;
+    box-shadow:0 0 16px rgba(255,42,75,.9);
+}
+
+.osas-detail-pagination{
+    display:flex;
+    align-items:center;
+    gap:12px;
+}
+
+.osas-detail-nav{
+    background:rgba(0,240,255,.10);
+    border:1.5px solid rgba(0,240,255,.3);
+    color:rgba(255,255,255,.4);
+    font-family:'Orbitron',sans-serif;
+    font-size:.7rem;
+    font-weight:700;
+    padding:5px 14px;
+    border-radius:3px;
+    cursor:not-allowed;
+    transition:.2s;
+}
+
+.osas-detail-nav.active{
+    background:rgba(0,240,255,.25);
+    border-color:#00f0ff;
+    color:#00f0ff;
+    cursor:pointer;
+    box-shadow:0 0 12px rgba(0,240,255,.6);
+}
+
+.osas-detail-nav.active:hover{
+    background:#00f0ff;
+    color:#000;
+    box-shadow:0 0 18px rgba(0,240,255,1);
+}
+
+.osas-detail-indicator{
+    color:#fff;
+    font-size:.72rem;
+    font-weight:700;
+    letter-spacing:1.5px;
+    white-space:nowrap;
+}
+
+.osas-detail-card{
+    height:310px;
+    box-sizing:border-box;
+    background:rgba(2,14,30,.94);
+    border:1.5px solid #00f0ff;
+    border-radius:6px;
+    padding:20px 24px;
+    display:flex;
+    flex-direction:column;
+    box-shadow:
+        0 0 25px rgba(0,240,255,.25),
+        inset 0 0 20px rgba(0,240,255,.08),
+        inset 0 0 30px rgba(0,0,0,.95);
+    backdrop-filter:blur(12px);
+    -webkit-backdrop-filter:blur(12px);
+}
+
+.osas-detail-title{
+    color:#00f0ff;
+    font-size:1.05rem;
+    font-weight:700;
+    letter-spacing:1.5px;
+    margin:0 0 12px;
+    text-shadow:0 0 10px rgba(0,240,255,.8);
+    text-transform:uppercase;
+    text-align:center;
+    flex-shrink:0;
+}
+
+.osas-detail-body{
+    font-size:.82rem;
+    line-height:1.5;
+    color:rgba(255,255,255,.9);
+    flex:1;
+    overflow-y:auto;
+    padding-right:6px;
+}
+
+.osas-detail-body::-webkit-scrollbar{ width:4px; }
+.osas-detail-body::-webkit-scrollbar-thumb{
+    background:#00f0ff;
+    border-radius:2px;
+}
+
+.osas-detail-page{ display:none; }
+.osas-detail-page.active{ display:block; }
+
+.osas-detail-highlight{
+    margin:0 0 8px;
+    color:#fff;
+    font-weight:600;
+}
+
+.osas-detail-list{
+    list-style:none;
+    padding:0;
+    margin:0;
+}
+
+.osas-detail-list li{
+    position:relative;
+    padding-left:18px;
+    margin-bottom:8px;
+}
+
+.osas-detail-list li::before{
+    content:'►';
+    position:absolute;
+    left:0;
+    top:2px;
+    color:#00f0ff;
+    font-size:.6rem;
+}
+
+.osas-detail-list strong{ color:#00f0ff; }
+
+.osas-detail-image{
+    float:left;
+    width:105px;
+    height:105px;
+    object-fit:cover;
+    margin:0 18px 12px 0;
+    border-radius:4px;
+    background:#fff;
+}
+
+@keyframes osasDetailIn{
+    0%{opacity:0; transform:translate(-50%,-46%) scale(.92); filter:blur(8px);}
+    100%{opacity:1; transform:translate(-50%,-50%) scale(1); filter:blur(0);}
+}
+@keyframes osasDetailOut{
+    0%{opacity:1; transform:translate(-50%,-50%) scale(1); filter:blur(0);}
+    100%{opacity:0; transform:translate(-50%,-46%) scale(.92); filter:blur(8px);}
+}
+
+/* Blur/disable the OSAS background while the detail panel is open */
+.osas-detail-background-disabled{
+    filter:blur(8px) !important;
+    opacity:.22 !important;
+    pointer-events:none !important;
+    user-select:none !important;
+}
+
+@media(max-width:700px){
+    .osas-detail-panel{ width:94vw; }
+    .osas-detail-topbar{
+        gap:6px;
+        padding:5px 7px;
+    }
+    .osas-detail-back{
+        font-size:.58rem;
+        padding:6px 8px;
+    }
+    .osas-detail-pagination{ gap:5px; }
+    .osas-detail-nav{
+        font-size:.55rem;
+        padding:5px 7px;
+    }
+    .osas-detail-indicator{
+        font-size:.55rem;
+        letter-spacing:.5px;
+    }
+    .osas-detail-card{
+        height:330px;
+        padding:14px 14px;
+    }
+    .osas-detail-title{ font-size:.82rem; }
+    .osas-detail-body{
+        font-size:.68rem;
+        line-height:1.4;
+    }
+    .osas-detail-image{
+        width:75px;
+        height:75px;
+        margin-right:10px;
+    }
+}
+
+@media(max-width:480px){
+    .osas-detail-panel{ width:94vw; }
+    .osas-detail-topbar{
+        flex-wrap:wrap;
+        justify-content:center;
+    }
+    .osas-detail-back{
+        width:100%;
+        justify-content:center;
+    }
+    .osas-detail-pagination{ width:100%; justify-content:center; }
+    .osas-detail-card{
+        height:calc(100vh - 145px);
+        min-height:300px;
+        padding:12px;
+    }
+    .osas-detail-title{
+        font-size:.72rem;
+        line-height:1.25;
+    }
+    .osas-detail-body{
+        font-size:.64rem;
+    }
+}

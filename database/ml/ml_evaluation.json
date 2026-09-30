@@ -1,0 +1,72 @@
+{
+    "evaluated_at": "2026-09-25T16:28:35+00:00",
+    "test_examples": 75,
+    "correct": 75,
+    "accuracy": 1,
+    "macro_precision": 1,
+    "macro_recall": 1,
+    "macro_f1": 1,
+    "per_class": {
+        "admission": {
+            "expected": 5,
+            "correct": 5
+        },
+        "tuition": {
+            "expected": 5,
+            "correct": 5
+        },
+        "courses": {
+            "expected": 5,
+            "correct": 5
+        },
+        "enrollment": {
+            "expected": 5,
+            "correct": 5
+        },
+        "registrar": {
+            "expected": 5,
+            "correct": 5
+        },
+        "guidance": {
+            "expected": 5,
+            "correct": 5
+        },
+        "library": {
+            "expected": 5,
+            "correct": 5
+        },
+        "student_activities": {
+            "expected": 5,
+            "correct": 5
+        },
+        "events": {
+            "expected": 5,
+            "correct": 5
+        },
+        "map": {
+            "expected": 5,
+            "correct": 5
+        },
+        "personnel": {
+            "expected": 5,
+            "correct": 5
+        },
+        "emergency": {
+            "expected": 5,
+            "correct": 5
+        },
+        "food": {
+            "expected": 5,
+            "correct": 5
+        },
+        "computer_lab": {
+            "expected": 5,
+            "correct": 5
+        },
+        "scholarship": {
+            "expected": 5,
+            "correct": 5
+        }
+    },
+    "confusion": []
+}

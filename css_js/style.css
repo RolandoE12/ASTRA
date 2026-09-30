@@ -1,0 +1,2593 @@
+/* ==========================================
+   ASTRA AI
+   PART 2 - MAIN LAYOUT
+========================================== */
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+}
+
+:root{
+
+    --cyan:#28e7ff;
+    --cyan2:#64f6ff;
+    --blue:#0a9dff;
+    --dark:#020913;
+    --panel:rgba(4,18,40,.55);
+
+    --border:rgba(64,239,255,.9);
+
+    --text:#ffffff;
+
+}
+
+html,
+body{
+
+    width:100%;
+    height:100%;
+    overflow:hidden;
+
+    font-family:'Orbitron',sans-serif;
+
+    background:#010814;
+
+    /* Disable pinch-zoom / double-tap-zoom at the browser level.
+       This is global, so it applies underneath every @media breakpoint
+       below without needing to be repeated in each one. */
+    touch-action: pan-x pan-y;
+    -ms-touch-action: pan-x pan-y;
+
+}
+
+/* =======================
+BACKGROUND
+======================= */
+
+body{
+
+    background-image:url("assets/bg.png");
+    background-size:cover;
+    background-position:center;
+    background-repeat:no-repeat;
+
+    position:relative;
+
+}
+
+/* dark overlay */
+
+.background-overlay{
+
+    position:absolute;
+
+    inset:0;
+
+    background:
+
+    radial-gradient(circle at center,
+    rgba(0,255,255,.10),
+    rgba(0,0,0,.65));
+
+    backdrop-filter:blur(1px);
+
+    z-index:0;
+
+}
+
+/* particles layer */
+
+#particles{
+
+    position:absolute;
+
+    inset:0;
+
+    pointer-events:none;
+
+    z-index:1;
+
+}
+
+/* =========================
+MAIN CONTAINER
+========================= */
+
+.container{
+
+    position:relative;
+
+    width:100%;
+
+    height:100vh;
+
+    display:flex;
+
+    justify-content:center;
+
+    align-items:center;
+
+    z-index:5;
+
+}
+
+/* ===========================
+STATUS PANEL
+=========================== */
+
+.status-panel{
+
+    position:absolute;
+
+    top:30px;
+
+    left:55px;
+
+    width:690px;
+
+    height:105px;
+
+     overflow:hidden; 
+
+    background:rgba(0,0,0,.60);
+
+    border:2px solid var(--border);
+
+    display:flex;
+
+    align-items:center;
+
+    padding:20px;
+
+    box-shadow:
+
+    0 0 20px rgba(0,255,255,.35),
+
+    inset 0 0 25px rgba(0,255,255,.12);
+
+    backdrop-filter:blur(15px);
+    z-index:10;
+
+}
+
+
+
+.status-title{
+
+    display:flex;
+
+    align-items:center;
+
+    gap:10px;
+
+    color:white;
+
+    font-size:30px;
+
+    font-weight:bolder;
+
+    white-space:nowrap;
+
+    position:relative;
+
+    animation:statusTitleMove 10s linear infinite;
+
+}
+
+@keyframes statusTitleMove{
+
+    /* Stay in the original position for 5 seconds */
+    0%{
+        transform:translateX(0);
+        opacity:1;
+    }
+
+    50%{
+        transform:translateX(0);
+        opacity:1;
+    }
+
+    /* Move left until it disappears */
+    65%{
+        transform:translateX(-700px);
+        opacity:0;
+    }
+
+    /* Instantly appear on the right */
+    66%{
+        transform:translateX(700px);
+        opacity:0;
+    }
+
+    /* Move back to the original position */
+    100%{
+        transform:translateX(0);
+        opacity:1;
+    }
+
+}
+
+/* ===========================
+STATUS LOGO
+=========================== */
+
+.status-logo{
+     
+     margin-left: 5px;
+    width:90px;
+
+    height:90px;
+
+    object-fit:contain;
+
+
+}
+
+
+
+
+/* ============================
+MAIN SCREEN
+============================ */
+
+.main-screen{
+
+    position:relative;
+
+    width:72%;
+
+    height:76%;
+
+    background:rgba(5,20,42,.35);
+
+    border:3px solid var(--cyan);
+
+    backdrop-filter:blur(15px);
+
+    box-shadow:
+
+    0 0 30px rgba(0,255,255,.35),
+
+    inset 0 0 60px rgba(0,255,255,.08);
+
+    overflow:hidden;
+
+}
+
+/* glow */
+
+.screen-glow{
+
+    position:absolute;
+
+    inset:0;
+
+    background:
+
+    radial-gradient(circle,
+    rgba(0,255,255,.08),
+    transparent 70%);
+
+    pointer-events:none;
+
+}
+
+/* grid */
+
+.hud-grid{
+
+    position:absolute;
+
+    inset:0;
+
+    background-image:
+
+    linear-gradient(rgba(0,255,255,.05) 1px, transparent 1px),
+
+    linear-gradient(90deg, rgba(0,255,255,.05) 1px, transparent 1px);
+
+    background-size:40px 40px;
+
+    pointer-events:none;
+
+}
+
+/* screen */
+
+.screen-content{
+
+    position:absolute;
+
+    inset:0;
+
+    padding:45px;
+
+    display:flex;
+
+    flex-direction:column;
+
+}
+
+/* =======================
+TEXT
+======================= */
+
+.greeting{
+
+    color:#77fbff;
+
+    letter-spacing:4px;
+
+    font-size:14px;
+
+}
+
+.title{
+
+    color:white;
+
+    margin-top:10px;
+
+    font-size:56px;
+
+    font-weight:900;
+
+    text-shadow:
+
+    0 0 15px cyan,
+
+    0 0 35px cyan;
+
+}
+
+#clock{
+
+    margin-top:25px;
+
+    color:white;
+
+    font-size:45px;
+
+}
+
+#date{
+
+    margin-top:8px;
+
+    color:#7cf8ff;
+
+    font-size:18px;
+
+}
+
+/* =====================
+CHAT WINDOW
+===================== */
+
+.chat-window{
+
+    margin-top:40px;
+
+    width:100%;
+
+    flex:1;
+
+    border:2px solid rgba(0,255,255,.25);
+
+    background:rgba(0,10,20,.30);
+
+    overflow-y:auto;
+
+    padding:20px;
+
+}
+
+.ai-message{
+
+    display:inline-block;
+
+    background:rgba(0,255,255,.12);
+
+    color:white;
+
+    padding:15px 18px;
+
+    border-left:4px solid cyan;
+
+    margin-bottom:15px;
+
+    max-width:70%;
+
+    line-height:1.7;
+
+}
+
+/* =====================
+CHAT MESSAGE EDIT
+
+ Lets the user revise one of their own
+ sent messages in place and resend it.
+ .user-message's own box (padding, width,
+ background...) is set by the <style> tag
+ script.js injects at runtime - these rules
+ only add new, non-conflicting properties
+ plus the new child elements the edit
+ feature introduces, so nothing here fights
+ that injected rule for the same property.
+ Fully fluid (%, flex) so it needs no extra
+ breakpoint of its own.
+===================== */
+
+.user-message{
+
+    position:relative;
+
+}
+
+.message-text{
+
+    display:block;
+
+    white-space:pre-wrap;
+
+    word-wrap:break-word;
+
+    overflow-wrap:break-word;
+
+}
+
+.edit-msg-btn{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    justify-content:center;
+
+    float:right;
+
+    clear:both;
+
+    margin-top:18px;
+    margin-right:-15px;
+
+    width:24px;
+
+    height:24px;
+
+    border:1px solid rgba(255,255,255,.35);
+
+    background:rgba(0,0,0,.25);
+
+    color:rgba(255,255,255,.8);
+
+    border-radius:50%;
+
+    cursor:pointer;
+
+    font-size:11px;
+
+    transition:.25s;
+
+}
+
+.edit-msg-btn:hover{
+
+    background:cyan;
+
+    color:black;
+
+    border-color:cyan;
+
+    box-shadow:0 0 10px cyan;
+
+}
+
+/* while editing, let the bubble use the full row
+   so the textarea has room to work with */
+
+.user-message.editing{
+
+    max-width:100%;
+
+    width:100%;
+
+}
+
+.edit-msg-textarea{
+
+    display:block;
+
+    width:100%;
+
+    min-height:70px;
+
+    margin-top:8px;
+
+    background:rgba(0,0,0,.5);
+
+    border:2px solid rgba(0,255,255,.45);
+
+    border-radius:6px;
+
+    color:white;
+
+    font-family:'Orbitron',sans-serif;
+
+    font-size:14px;
+
+    padding:10px;
+
+    resize:vertical;
+
+    outline:none;
+
+    box-sizing:border-box;
+
+}
+
+.edit-msg-actions{
+
+    display:flex;
+
+    flex-wrap:wrap;
+
+    gap:10px;
+
+    margin-top:8px;
+
+    justify-content:flex-end;
+
+}
+
+.edit-msg-save,
+.edit-msg-cancel{
+
+    display:inline-flex;
+
+    align-items:center;
+
+    gap:6px;
+
+    border:2px solid cyan;
+
+    background:rgba(0,255,255,.12);
+
+    color:white;
+
+    padding:6px 14px;
+
+    border-radius:6px;
+
+    cursor:pointer;
+
+    font-family:'Orbitron',sans-serif;
+
+    font-size:12px;
+
+    letter-spacing:1px;
+
+    transition:.25s;
+
+}
+
+.edit-msg-save:hover{
+
+    background:cyan;
+
+    color:black;
+
+    box-shadow:0 0 12px cyan;
+
+}
+
+.edit-msg-cancel{
+
+    border-color:#ff4d4d;
+
+    color:#ffb3b3;
+
+    background:rgba(255,42,75,.08);
+
+}
+
+.edit-msg-cancel:hover{
+
+    background:#ff2a4b;
+
+    color:white;
+
+    border-color:#ff2a4b;
+
+    box-shadow:0 0 12px #ff2a4b;
+
+}
+
+/* =========================
+SMART QUESTION SUGGESTIONS
+========================= */
+
+.suggestions-box {
+    width: 100%;
+    margin-top: 10px;
+    display: none;
+    flex-shrink: 0;
+    animation: suggestionFadeIn .25s ease;
+}
+
+.suggestions-box.show {
+    display: block;
+}
+
+.suggestions-label {
+    color: #7ef9ff;
+    font-size: 10px;
+    letter-spacing: 1.5px;
+    margin-bottom: 8px;
+    opacity: .9;
+}
+
+.suggestions-label i {
+    margin-right: 6px;
+}
+
+.suggestions-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    max-height: 72px;
+    overflow-y: auto;
+    padding-right: 3px;
+}
+
+.suggestion-chip {
+    appearance: none;
+    border: 1px solid rgba(40,231,255,.55);
+    background: rgba(0,255,255,.07);
+    color: #eaffff;
+    padding: 9px 12px;
+    border-radius: 18px;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 10px;
+    line-height: 1.35;
+    cursor: pointer;
+    transition: .25s ease;
+    text-align: left;
+    box-shadow: inset 0 0 10px rgba(0,255,255,.03);
+}
+
+.suggestion-chip:hover {
+    background: rgba(0,255,255,.20);
+    border-color: cyan;
+    color: white;
+    box-shadow:
+        0 0 12px rgba(0,255,255,.35),
+        inset 0 0 10px rgba(0,255,255,.08);
+    transform: translateY(-1px);
+}
+
+.suggestion-chip:active {
+    transform: scale(.98);
+}
+
+@keyframes suggestionFadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(5px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* =====================
+INPUT
+===================== */
+
+.input-area{
+
+    margin-top:20px;
+
+    display:flex;
+
+    gap:15px;
+
+}
+
+/* Overlay position used when the Information page is open.
+   Mirrors what openInformation() used to set inline. */
+.info-mode .input-area{
+
+    position:absolute;
+
+    bottom:45px;
+
+    left:45px;
+
+    right:45px;
+
+}
+
+#userInput{
+
+    flex:1;
+
+    height:60px;
+
+    background:rgba(0,0,0,.45);
+
+    border:2px solid rgba(0,255,255,.35);
+
+    color:white;
+
+    padding:0 20px;
+
+    font-size:17px;
+
+    outline:none;
+
+}
+
+#userInput::placeholder{
+
+    color:#7ef9ff;
+
+}
+
+#sendBtn,
+#micBtn{
+
+    width:60px;
+
+    border:none;
+
+    cursor:pointer;
+
+    background:rgba(0,255,255,.15);
+
+    color:white;
+
+    border:2px solid cyan;
+
+    font-size:22px;
+
+    transition:.35s;
+
+}
+
+#sendBtn:hover,
+#micBtn:hover{
+
+    background:cyan;
+
+    color:black;
+
+    box-shadow:
+
+    0 0 25px cyan;
+
+}
+
+
+
+/* ===========================
+ROBOT
+=========================== */
+
+
+.robot{
+    position: fixed;          /* Always fixed to the screen */
+    left: -320px;              /* Close to the left edge */
+    bottom: 0;
+
+    width: clamp(450px, 40vw, 820px);
+    z-index: 100;
+
+    animation: floating 4s ease-in-out infinite;
+
+    pointer-events: none;
+
+    filter:
+        drop-shadow(0 0 20px cyan)
+        drop-shadow(0 0 55px rgba(0,255,255,.75));
+}
+
+.robot img{
+    width:120%;
+    height:auto;
+    display:block;
+}
+/* ===========================
+LOADER
+=========================== */
+
+.loader{
+
+    position:fixed;
+
+    inset:0;
+
+    background:#020814;
+
+    display:flex;
+
+    flex-direction:column;
+
+    justify-content:center;
+
+    align-items:center;
+
+    z-index:99999;
+
+}
+
+.loader-circle{
+
+    width:90px;
+
+    height:90px;
+
+    border-radius:50%;
+
+    border:5px solid rgba(0,255,255,.20);
+
+    border-top:5px solid cyan;
+
+    animation:spin 1s linear infinite;
+
+}
+
+.loader-text{
+
+    margin-top:25px;
+
+    color:white;
+
+    letter-spacing:4px;
+
+}
+
+@keyframes spin{
+
+    from{
+
+        transform:rotate(0deg);
+
+    }
+
+    to{
+
+        transform:rotate(360deg);
+
+    }
+
+}
+
+
+
+
+
+/* =====================================================
+   PART 3
+   FUTURISTIC HUD FRAME
+===================================================== */
+
+/* Main HUD Border Glow */
+
+.main-screen{
+
+    border-radius:18px;
+
+}
+
+.main-screen::before{
+
+    content:"";
+
+    position:absolute;
+
+    inset:-3px;
+
+    border-radius:18px;
+
+    background:
+
+    linear-gradient(90deg,
+
+    transparent,
+
+    #00f7ff,
+
+    transparent,
+
+    #00f7ff,
+
+    transparent);
+
+    z-index:-1;
+
+    filter:blur(12px);
+
+    opacity:.8;
+
+}
+
+/* =====================================
+TOP HUD BAR
+===================================== */
+
+.main-screen::after{
+
+    content:"";
+
+    position:absolute;
+
+    top:0;
+
+    left:12%;
+
+    width:280px;
+
+    height:8px;
+
+    background:cyan;
+
+    box-shadow:
+
+    0 0 10px cyan,
+
+    0 0 25px cyan,
+
+    0 0 45px cyan;
+
+}
+
+/* =====================================
+SCREEN CORNERS
+===================================== */
+
+.corner{
+
+    position:absolute;
+
+    width:90px;
+
+    height:90px;
+
+    border-color:#25f8ff;
+
+    pointer-events:none;
+
+}
+
+/* Top Left */
+
+.corner.tl{
+
+    top:-2px;
+
+    left:-2px;
+
+    border-top:4px solid cyan;
+
+    border-left:4px solid cyan;
+
+}
+
+/* Top Right */
+
+.corner.tr{
+
+    top:-2px;
+
+    right:-2px;
+
+    border-top:4px solid cyan;
+
+    border-right:4px solid cyan;
+
+}
+
+/* Bottom Left */
+
+.corner.bl{
+
+    bottom:-2px;
+
+    left:-2px;
+
+    border-left:4px solid cyan;
+
+    border-bottom:4px solid cyan;
+
+}
+
+/* Bottom Right */
+
+.corner.br{
+
+    bottom:-2px;
+
+    right:-2px;
+
+    border-right:4px solid cyan;
+
+    border-bottom:4px solid cyan;
+
+}
+
+/* =====================================
+SIDE DECORATION
+===================================== */
+
+.left-decoration{
+
+    position:absolute;
+
+    top:120px;
+
+    left:25px;
+
+    width:5px;
+
+    height:220px;
+
+    background:
+
+    linear-gradient(
+
+    transparent,
+
+    cyan,
+
+    transparent);
+
+    box-shadow:
+
+    0 0 10px cyan,
+
+    0 0 30px cyan;
+
+}
+
+.right-decoration{
+
+    position:absolute;
+
+    top:90px;
+
+    right:25px;
+
+    width:5px;
+
+    height:220px;
+
+    background:
+
+    linear-gradient(
+
+    transparent,
+
+    cyan,
+
+    transparent);
+
+    box-shadow:
+
+    0 0 10px cyan,
+
+    0 0 30px cyan;
+
+}
+
+/* =====================================
+BOTTOM CENTER PANEL
+===================================== */
+
+.ai-core{
+
+    position:absolute;
+
+    bottom:-15px;
+
+}
+
+.ai-core::before{
+
+    content:"";
+
+    position:absolute;
+
+    left:50%;
+
+    transform:translateX(-50%);
+
+    bottom:-15px;
+
+    width:220px;
+
+    height:35px;
+
+    background:
+
+    linear-gradient(
+
+    90deg,
+
+    transparent,
+
+    cyan,
+
+    transparent);
+
+    filter:blur(8px);
+
+}
+
+/* =====================================
+AI CORE RINGS
+===================================== */
+
+.one{
+
+    animation:ring1 5s linear infinite;
+
+}
+
+.two{
+
+    transform:scale(.82);
+
+    animation:ring2 3s linear infinite reverse;
+
+}
+
+.three{
+
+    transform:scale(.62);
+
+    animation:ring3 2s linear infinite;
+
+}
+
+@keyframes ring1{
+
+    from{
+
+        transform:rotate(0deg);
+
+    }
+
+    to{
+
+        transform:rotate(360deg);
+
+    }
+
+}
+
+@keyframes ring2{
+
+    from{
+
+        transform:scale(.82) rotate(360deg);
+
+    }
+
+    to{
+
+        transform:scale(.82) rotate(0deg);
+
+    }
+
+}
+
+@keyframes ring3{
+
+    from{
+
+        transform:scale(.62) rotate(0deg);
+
+    }
+
+    to{
+
+        transform:scale(.62) rotate(-360deg);
+
+    }
+
+}
+
+/* =====================================
+PULSE
+===================================== */
+
+.core-center{
+
+    animation:pulse 2s infinite;
+
+}
+
+@keyframes pulse{
+
+    0%{
+
+        box-shadow:
+
+        0 0 10px cyan,
+
+        0 0 20px cyan,
+
+        0 0 30px cyan;
+
+    }
+
+    50%{
+
+        box-shadow:
+
+        0 0 20px cyan,
+
+        0 0 50px cyan,
+
+        0 0 90px cyan;
+
+    }
+
+    100%{
+
+        box-shadow:
+
+        0 0 10px cyan,
+
+        0 0 20px cyan,
+
+        0 0 30px cyan;
+
+    }
+
+}
+
+/* =====================================
+SCAN LINE
+===================================== */
+
+.scanline{
+
+    position:absolute;
+
+    left:0;
+
+    top:-100%;
+
+    width:100%;
+
+    height:120px;
+
+    background:
+
+    linear-gradient(
+
+    transparent,
+
+    rgba(0,255,255,.25),
+
+    transparent);
+
+    animation:scanner 5s linear infinite;
+
+}
+
+@keyframes scanner{
+
+    from{
+
+        top:-120px;
+
+    }
+
+    to{
+
+        top:100%;
+
+    }
+
+}
+
+/* =====================================
+GRID ANIMATION
+===================================== */
+
+.hud-grid{
+
+    animation:gridmove 20s linear infinite;
+
+}
+
+@keyframes gridmove{
+
+    from{
+
+        background-position:0 0;
+
+    }
+
+    to{
+
+        background-position:40px 40px;
+
+    }
+
+}
+
+/* =====================================
+CHAT SCROLLBAR
+===================================== */
+
+.chat-window::-webkit-scrollbar{
+
+    width:7px;
+
+}
+
+.chat-window::-webkit-scrollbar-thumb{
+
+    background:cyan;
+
+    border-radius:20px;
+
+}
+
+.chat-window::-webkit-scrollbar-track{
+
+    background:#02141d;
+
+}
+
+/* =====================================
+INPUT EFFECT
+===================================== */
+
+#userInput:focus{
+
+    border-color:#55ffff;
+
+    box-shadow:
+
+    0 0 12px cyan,
+
+    inset 0 0 12px rgba(0,255,255,.2);
+
+}
+
+/* =====================================
+BUTTON EFFECT
+===================================== */
+
+#sendBtn,
+#micBtn{
+
+    position:relative;
+
+    overflow:hidden;
+
+}
+
+#sendBtn::before,
+#micBtn::before{
+
+    content:"";
+
+    position:absolute;
+
+    top:-100%;
+
+    left:-50%;
+
+    width:45px;
+
+    height:220%;
+
+    transform:rotate(25deg);
+
+    background:
+
+    rgba(255,255,255,.35);
+
+    transition:.5s;
+
+}
+
+#sendBtn:hover::before,
+#micBtn:hover::before{
+
+    left:140%;
+
+}
+
+
+
+
+/* ===========================================================
+   PART 4
+   RESPONSIVE + ADVANCED CYBER EFFECTS
+=========================================================== */
+
+/* ===========================
+ FLOATING ANIMATION
+=========================== */
+
+@keyframes floating {
+
+    0% {
+        transform: translateY(0px);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+
+    100% {
+        transform: translateY(0px);
+    }
+
+}
+
+.robot {
+
+    animation: floating 4s ease-in-out infinite;
+
+    filter:
+        drop-shadow(0 0 15px cyan)
+        drop-shadow(0 0 40px rgba(0,255,255,.6));
+
+}
+
+/* ===========================
+ STATUS PANEL GLOW
+=========================== */
+
+.status-panel{
+
+    animation: statusGlow 3s infinite alternate;
+
+}
+
+@keyframes statusGlow{
+
+    from{
+
+        box-shadow:
+            0 0 15px rgba(0,255,255,.3),
+            inset 0 0 15px rgba(0,255,255,.15);
+
+    }
+
+    to{
+
+        box-shadow:
+            0 0 35px rgba(0,255,255,.8),
+            inset 0 0 35px rgba(0,255,255,.25);
+
+    }
+
+}
+
+/* ===========================
+ TITLE
+=========================== */
+
+.title{
+
+    animation:titleGlow 2s infinite alternate;
+
+}
+
+@keyframes titleGlow{
+
+    from{
+
+        text-shadow:
+            0 0 10px cyan,
+            0 0 20px cyan;
+
+    }
+
+    to{
+
+        text-shadow:
+            0 0 20px cyan,
+            0 0 45px cyan,
+            0 0 70px cyan;
+
+    }
+
+}
+
+/* ===========================
+ CHAT ANIMATION
+=========================== */
+
+.ai-message{
+
+    animation:fadeIn .5s ease;
+
+}
+
+@keyframes fadeIn{
+
+    from{
+
+        opacity:0;
+
+        transform:translateY(15px);
+
+    }
+
+    to{
+
+        opacity:1;
+
+        transform:translateY(0);
+
+    }
+
+}
+
+/* ===========================
+ INPUT HOVER
+=========================== */
+
+#userInput{
+
+    transition:.35s;
+
+}
+
+#userInput:hover{
+
+    border-color:#00ffff;
+
+}
+
+/* ===========================
+ CLOCK
+=========================== */
+
+#clock{
+
+    text-shadow:
+
+        0 0 12px cyan,
+        0 0 25px cyan;
+
+}
+
+/* ===========================
+ DATE
+=========================== */
+
+#date{
+
+    opacity:.9;
+
+}
+
+
+@media(max-width:1920px){
+
+.main-screen{
+
+    width:78%;
+
+    height:82%;
+
+}
+
+.status-panel{
+ 
+    width:620px;
+    height:90px;
+
+    left:15px;
+    top:15px;
+
+}
+
+.status-title{
+
+    font-size:28px;
+
+}
+
+.status-logo{
+    margin-left:-10px;
+    width:80px;
+    height:80px;
+
+
+}
+
+.robot{
+
+    left:-280px;
+    bottom:-40px;
+    width:610px;
+
+}
+
+.title{
+
+    font-size:42px;
+
+}
+
+.chat-window{
+    height:400px;
+    margin-top:30px;
+    margin-bottom: -20px;
+}
+
+.ai-message{
+    max-width:70%;
+    line-height:1.3;
+    font-size:15px;
+
+}
+.input-area{
+    margin-bottom:-15px;
+}
+
+#clock{
+
+    font-size:34px;
+
+}
+
+}
+
+
+@media(max-width:1366px){
+
+.main-screen{
+
+    width:85%;
+
+    height:82%;
+
+}
+
+.status-panel{
+
+    width:470px;
+    height:80px;
+
+    left:15px;
+    top:15px;
+
+}
+
+.status-title{
+
+    font-size:20px;
+
+}
+
+.status-logo{
+    margin-left:-10px;
+    width:70px;
+    height:70px;
+
+
+}
+
+.robot{
+
+    left:-200px;
+    bottom:-40px;
+    width:450px;
+
+}
+
+.title{
+
+    font-size:42px;
+
+}
+
+.chat-window{
+    height:400px;
+    margin-top:10px;
+    margin-bottom: -20px;
+}
+
+.ai-message{
+    max-width:70%;
+    line-height:1.3;
+    font-size:15px;
+
+}
+.input-area{
+    margin-bottom:-15px;
+}
+
+#clock{
+    margin-top: 0;
+    font-size:25px;
+
+}
+
+}
+
+/* ===========================
+ TABLET
+=========================== */
+
+@media(max-width:1200px){
+
+.main-screen{
+
+    width:90%;
+
+    height:82%;
+
+}
+
+.status-panel{
+
+    width:470px;
+    height:90px;
+
+    left:5px;
+    top:5px;
+
+}
+
+.status-title{
+
+    font-size:20px;
+
+}
+
+.status-logo{
+    margin-left:-10px;
+    width:70px;
+    height:70px;
+
+
+}
+
+.robot{
+
+    left:-170px;
+    bottom:-20px;
+    width:400px;
+
+}
+
+.title{
+
+    font-size:42px;
+
+}
+
+.chat-window{
+    height:400px;
+    margin-top:10px;
+    margin-bottom: -20px;
+}
+
+.ai-message{
+    max-width:70%;
+    line-height:1.3;
+    font-size:15px;
+
+}
+.input-area{
+    margin-bottom:-15px;
+}
+
+#clock{
+
+    font-size:34px;
+
+}
+
+}
+
+/* =========================================
+   1024 × 600 LAPTOP / SMALL DISPLAY
+========================================= */
+
+@media (max-width:1024px){
+
+
+/* ===========================
+   MAIN SCREEN
+=========================== */
+
+.main-screen{
+
+    width:88%;
+
+    height:78%;
+
+}
+
+
+/* ===========================
+   STATUS PANEL
+=========================== */
+
+.status-panel{
+
+    width:430px;
+
+    height:75px;
+
+    left:15px;
+
+    top:10px;
+
+    padding:10px;
+
+}
+
+
+.status-title{
+
+    font-size:18px;
+
+}
+
+
+.status-logo{
+
+    width:60px;
+    margin-left: 5px;
+    height:60px;
+
+}
+
+
+
+/* ===========================
+   CONTENT
+=========================== */
+
+.screen-content{
+
+    padding:35px;
+
+}
+
+
+.greeting{
+
+    font-size:12px;
+
+}
+
+
+.title{
+
+    font-size:36px;
+
+    margin-top:5px;
+
+}
+
+
+#clock{
+
+    font-size:28px;
+
+    margin-top:10px;
+
+}
+
+
+#date{
+
+    font-size:14px;
+
+}
+
+
+/* ===========================
+   CHAT
+=========================== */
+
+.chat-window{
+
+    margin-top:5px;
+
+    height:230px;
+
+    padding:12px;
+
+}
+
+
+
+.ai-message{
+
+    padding:10px 12px;
+
+    font-size:14px;
+
+    line-height:1;
+
+    max-width:75%;
+
+}
+
+
+/* ===========================
+   INPUT
+=========================== */
+
+.input-area{
+
+    margin-top:20px;
+
+    gap:10px;
+
+}
+
+
+#userInput{
+
+    height:45px;
+
+    font-size:14px;
+
+}
+
+
+#sendBtn,
+#micBtn{
+
+    width:45px;
+
+    height:45px;
+
+    font-size:18px;
+
+}
+
+
+
+/* ===========================
+   ROBOT
+=========================== */
+
+.robot{
+
+    left:-160px;
+
+    bottom:-20px;
+
+    width:350px;
+
+}
+
+
+
+/* ===========================
+   HUD DECORATIONS
+=========================== */
+
+.left-decoration{
+
+    height:150px;
+
+    top:100px;
+
+}
+
+
+.right-decoration{
+
+    height:150px;
+
+    top:100px;
+
+}
+
+
+.corner{
+
+    width:55px;
+
+    height:55px;
+
+}
+
+
+
+/* ===========================
+   AI CORE
+=========================== */
+
+.ai-core{
+
+    transform:scale(.7);
+
+}
+
+
+
+}
+
+/* ===========================
+ SMALL TABLET
+=========================== */
+
+@media(max-width:992px){
+
+.container{
+
+    padding:20px;
+
+}
+
+.status-panel{
+
+    position:relative;
+
+    width:100%;
+
+    left:0;
+
+    top:0;
+
+    margin-bottom:20px;
+
+}
+
+.main-screen{
+
+    width:100%;
+
+    height:calc(100vh - 160px);
+
+}
+
+.robot{
+
+    display:block;
+
+    left:-75px;
+
+    bottom:0;
+
+    width:390px;
+}
+
+.title{
+
+    font-size:36px;
+
+}
+
+.ai-core{
+
+    transform:translateX(-50%) scale(.8);
+
+}
+
+}
+
+/* ===========================
+ MOBILE
+=========================== */
+
+@media(max-width:768px){
+
+body{
+
+    overflow:auto;
+
+}
+
+.main-screen{
+
+    height:auto;
+
+    min-height:650px;
+
+}
+
+.screen-content{
+
+    padding:20px;
+
+}
+
+.chat-window{
+
+    height:260px;
+
+    flex:none;
+
+}
+
+.title{
+
+    font-size:28px;
+
+}
+
+.robot{
+
+    display:block;
+
+    left:-20px;
+
+    bottom:0;
+
+    width:280px;
+
+    opacity:.95;
+
+}
+
+#clock{
+
+    font-size:28px;
+
+}
+
+#date{
+
+    font-size:14px;
+
+}
+
+.input-area{
+
+    flex-wrap:wrap;
+
+}
+
+#userInput{
+
+    width:100%;
+
+}
+
+#sendBtn,
+
+#micBtn{
+
+    flex:1;
+
+    height:55px;
+
+}
+
+.ai-core{
+
+    display:none;
+
+}
+
+.left-decoration,
+
+.right-decoration{
+
+    display:none;
+
+}
+
+.corner{
+
+    width:45px;
+
+    height:45px;
+
+}
+
+}
+
+/* ===========================
+ VERY SMALL PHONES
+=========================== */
+
+@media(max-width:480px){
+
+.main-screen{
+    margin-left: 5px;
+    margin-top: 50px; /* clears the fixed status panel (70px tall) at the top */
+    width:150%;
+    height:20%;
+    backdrop-filter:none; /* prevents this ancestor from becoming the
+                              containing block for the fixed input bar */
+
+}
+
+.status-panel{
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    margin: 0;
+    width: 100%;
+    height: 70px;
+    border-left: none;
+    border-right: none;
+    border-top: none;
+    box-sizing: border-box;
+    z-index: 500;
+}
+
+.status-title{
+
+    font-size:15px;
+
+}
+
+.status-logo{
+    margin-left:8px;
+    width:50px;
+    height:50px;
+
+
+}
+
+
+
+.title{
+
+    font-size:42px;
+
+}
+
+.chat-window{
+    height:280px;
+    margin-top:-40px;
+    font-size:12px;
+    padding-bottom:70px; /* keeps last message clear of the fixed input bar */
+
+}
+
+.ai-message{
+    max-width:100%;
+    line-height:1;
+    font-size:12px;
+
+}
+
+.input-area{
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: 0;
+    width: 100%;
+    height: 60px;
+    padding: 0 10px;
+    padding-bottom: env(safe-area-inset-bottom, 0px);
+    box-sizing: border-box;
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 5px;
+    align-items: center;
+    background: rgba(3,12,26,.92);
+    border-top: 2px solid rgba(0,255,255,.35);
+    backdrop-filter: blur(10px);
+    z-index: 500;
+}
+
+/* Keep the same fixed-to-viewport bar on the Information page too,
+   overriding the desktop 45px-inset overlay rule above. */
+.info-mode .input-area{
+    position: fixed;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    margin: 0;
+}
+
+#userInput{
+    flex: 1;
+    width: auto;
+    height: 45px;
+    min-width: 0;
+    font-size: 12px;
+    padding: 0 10px;
+}
+
+#sendBtn,
+#micBtn{
+    flex: 0 0 45px;
+    width: 45px;
+    height: 45px;
+    min-width: 45px;
+    padding: 0;
+    margin-left: 0;
+    font-size: 14px;
+}
+
+
+#clock{
+
+    font-size:34px;
+
+}
+
+
+.robot{
+        position: fixed;
+
+        /* CENTER ROBOT */
+        left: 10px;
+        top: 84%;
+
+        /* Move exact center of robot to screen center */
+        transform: translate(-50%, -50%);
+
+        /* Robot size */
+        width: 300px;
+
+        /* Remove bottom positioning */
+        bottom: auto;
+
+        z-index: 100;
+
+        opacity: .95;
+
+        pointer-events: none;
+
+        animation: robotCenterFloat 4s ease-in-out infinite;
+
+        filter:
+            drop-shadow(0 0 15px cyan)
+            drop-shadow(0 0 40px rgba(0,255,255,.6));
+    }
+
+    .robot img{
+        width:120%;
+        height:auto;
+        display:block;
+    }
+
+}
+
+/* ===========================
+   CENTER ROBOT FLOATING
+=========================== */
+
+@keyframes robotCenterFloat{
+
+    0%{
+        transform:translate(-50%, -50%);
+    }
+
+    50%{
+        transform:translate(-50%, calc(-50% - 10px));
+    }
+
+    100%{
+        transform:translate(-50%, -50%);
+    }
+
+}
+
+/* ===========================
+ LOADER FADE
+=========================== */
+
+.loader.hide{
+
+    opacity:0;
+
+    visibility:hidden;
+
+    transition:.8s;
+
+}
+
+/* ===========================
+ GLOBAL TRANSITIONS
+=========================== */
+
+*{
+
+    transition:
+
+        background .3s,
+        color .3s,
+        border-color .3s,
+        box-shadow .3s;
+
+}
+
+
+/*========================================
+SYSTEM MESSAGE
+========================================*/
+
+.system-message{
+
+padding:10px;
+
+margin:10px auto;
+
+width:fit-content;
+
+font-size:10px;
+
+letter-spacing:2px;
+
+color:#7ffcff;
+
+background:rgba(0,255,255,.08);
+
+border:1px solid rgba(0,255,255,.25);
+
+border-radius:20px;
+
+}
+
+/*========================================
+MIC ANIMATION
+========================================*/
+
+.listening{
+
+animation:listen 1s infinite;
+
+}
+
+@keyframes listen{
+
+0%{
+
+transform:scale(1);
+
+box-shadow:0 0 0 cyan;
+
+}
+
+50%{
+
+transform:scale(1.18);
+
+box-shadow:
+
+0 0 25px cyan,
+
+0 0 50px cyan,
+
+0 0 75px cyan;
+
+}
+
+100%{
+
+transform:scale(1);
+
+box-shadow:0 0 0 cyan;
+}
+}
+
+
+
+
+
+/* =========================
+SMART SUGGESTIONS - MOBILE
+========================= */
+
+@media (max-width: 768px) {
+
+    .suggestions-label {
+        font-size: 8px;
+        margin-bottom: 6px;
+    }
+
+    .suggestions-list {
+        gap: 6px;
+        max-height: 64px;
+    }
+
+    .suggestion-chip {
+        font-size: 8px;
+        padding: 7px 9px;
+        border-radius: 14px;
+    }
+
+}
+
+@media (max-width: 480px) {
+
+    .suggestions-box {
+        margin-top: 7px;
+    }
+
+    .suggestions-label {
+        font-size: 7px;
+        letter-spacing: 1px;
+    }
+
+    .suggestions-list {
+        gap: 5px;
+        max-height: 58px;
+    }
+
+    .suggestion-chip {
+        font-size: 7px;
+        padding: 6px 8px;
+    }
+
+}
+
+
+/* Suggestions belong only to the main chat screen. */
+body.info-mode #suggestionsBox,
+body.map-mode #suggestionsBox {
+    display: none !important;
+}
+
+
+/*======================================
+ ASTRA AI - CGCI PERSONNEL RESULTS
+======================================*/
+.ai-personnel-results{
+    display:grid;
+    grid-template-columns:repeat(auto-fit,minmax(180px,1fr));
+    gap:12px;
+    width:min(100%,760px);
+    margin-top:12px;
+}
+.ai-personnel-card{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    padding:10px;
+    border:1px solid rgba(0,100,35,.35);
+    border-radius:12px;
+    background:rgba(255,255,255,.96);
+    box-shadow:0 4px 12px rgba(0,0,0,.12);
+    color:#073b1a;
+    min-width:0;
+}
+.ai-personnel-photo{
+    width:68px;
+    height:68px;
+    flex:0 0 68px;
+    object-fit:cover;
+    object-position:center;
+    border-radius:50%;
+    border:3px solid #075b24;
+    background:#eef5ef;
+}
+.ai-personnel-info{min-width:0}
+.ai-personnel-name{
+    font-weight:900;
+    font-size:14px;
+    line-height:1.15;
+    text-transform:uppercase;
+    overflow-wrap:anywhere;
+}
+.ai-personnel-position{
+    margin-top:3px;
+    font-size:12px;
+    font-weight:700;
+    line-height:1.2;
+}
+.ai-personnel-department{
+    margin-top:3px;
+    font-size:11px;
+    opacity:.75;
+    line-height:1.2;
+}
+@media(max-width:600px){
+    .ai-personnel-results{grid-template-columns:1fr}
+}

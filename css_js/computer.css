@@ -1,0 +1,342 @@
+/* ==========================================================================
+   COMPUTER & E-LIBRARY HUD SUBPAGE (MATCHING HUD STYLE)
+   ========================================================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@500;700;900&family=Rajdhani:wght@500;600;700&display=swap');
+
+/* Main subpage overlay positioned in center frame */
+.hud-subpage-comp {
+    position: absolute;
+    top: 51%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 88%;
+    max-width: 780px;
+    z-index: 1000;
+    font-family: 'Orbitron', 'Rajdhani', sans-serif;
+    color: #ffffff;
+    pointer-events: auto;
+}
+
+.hud-subpage-comp.active {
+    display: block !important;
+    animation: hudPopInComp 0.35s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+.hud-subpage-comp.closing {
+    animation: hudPopOutComp 0.25s ease-in forwards !important;
+}
+
+.hud-subpage-inner-comp {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+/* =========================================
+   TOP CONTROL BAR (BACK & PREV/NEXT BUTTONS)
+========================================= */
+.hud-top-bar-comp {
+    margin-top: -40px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    background: rgba(2, 14, 30, 0.9);
+    padding: 8px 14px;
+    border-radius: 4px;
+    border: 1px solid rgba(0, 240, 255, 0.3);
+    backdrop-filter: blur(8px);
+    box-sizing: border-box;
+}
+
+/* Red Exit Button */
+.hud-btn-red-comp {
+    background: rgba(255, 42, 75, 0.2);
+    border: 1.5px solid #ff2a4b;
+    color: #ff2a4b;
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.72rem;
+    font-weight: 700;
+    padding: 6px 14px;
+    border-radius: 3px;
+    cursor: pointer;
+    letter-spacing: 1px;
+    box-shadow: 0 0 10px rgba(255, 42, 75, 0.4);
+    transition: all 0.2s ease;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    text-transform: uppercase;
+}
+
+.hud-btn-red-comp:hover {
+    background: #ff2a4b;
+    color: #ffffff;
+    box-shadow: 0 0 16px rgba(255, 42, 75, 0.9);
+}
+
+.hud-btn-red-comp .x-mark {
+    font-weight: bold;
+}
+
+/* Pagination Wrapper */
+.hud-pagination-comp {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.hud-page-indicator-comp {
+    font-size: 0.72rem;
+    letter-spacing: 1.5px;
+    color: #ffffff;
+    font-weight: 700;
+}
+
+/* Nav Buttons (PREV / NEXT) */
+.hud-nav-btn-comp {
+    background: rgba(0, 240, 255, 0.1);
+    border: 1.5px solid rgba(0, 240, 255, 0.3);
+    color: rgba(255, 255, 255, 0.4);
+    font-family: 'Orbitron', sans-serif;
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 5px 14px;
+    border-radius: 3px;
+    cursor: not-allowed;
+    transition: all 0.2s ease;
+}
+
+.hud-nav-btn-comp.active {
+    background: rgba(0, 240, 255, 0.25);
+    border: 1.5px solid #00f0ff;
+    color: #00f0ff;
+    cursor: pointer;
+    box-shadow: 0 0 12px rgba(0, 240, 255, 0.6);
+}
+
+.hud-nav-btn-comp.active:hover {
+    background: #00f0ff;
+    color: #000000;
+    box-shadow: 0 0 18px rgba(0, 240, 255, 1);
+}
+
+/* =========================================
+   FIXED HEIGHT HUD CARD CONTAINER
+========================================= */
+.hud-content-card-comp {
+    background: rgba(2, 14, 30, 0.94);
+    border: 1.5px solid #00f0ff;
+    border-radius: 6px;
+    padding: 20px 24px;
+    height: 320px; /* Matching fixed height */
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+    box-shadow: 0 0 25px rgba(0, 240, 255, 0.25), 
+                inset 0 0 20px rgba(0, 240, 255, 0.08),
+                inset 0 0 30px rgba(0, 0, 0, 0.95);
+    backdrop-filter: blur(12px);
+    -webkit-backdrop-filter: blur(12px);
+}
+
+.hud-card-title-comp {
+    color: #00f0ff;
+    font-size: 1.05rem;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    margin-top: 0;
+    margin-bottom: 14px;
+    text-shadow: 0 0 10px rgba(0, 240, 255, 0.8);
+    text-transform: uppercase;
+    text-align: center;
+    flex-shrink: 0;
+}
+
+/* Scrollable Card Body */
+.hud-card-body-comp {
+    font-size: 0.82rem;
+    line-height: 1.55;
+    color: rgba(255, 255, 255, 0.9);
+    flex-grow: 1;
+    overflow-y: auto;
+    padding-right: 6px;
+}
+
+/* Custom Cyan Scrollbar */
+.hud-card-body-comp::-webkit-scrollbar {
+    width: 4px;
+}
+
+.hud-card-body-comp::-webkit-scrollbar-thumb {
+    background: #00f0ff;
+    border-radius: 2px;
+}
+
+.hud-card-body-comp::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.3);
+}
+
+/* =========================================
+   PAGE CONTENT & TEXT STYLES
+========================================= */
+.comp-page-content {
+    color: #ffffff !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+}
+
+.hud-text-highlight-comp {
+    margin-top: 0;
+    margin-bottom: 8px;
+    color: #ffffff;
+    font-weight: 600;
+}
+
+.hud-list-comp {
+    list-style: none;
+    padding-left: 0;
+    margin: 0;
+}
+
+.hud-list-comp li {
+    position: relative;
+    padding-left: 18px;
+    margin-bottom: 8px;
+    color: rgba(255, 255, 255, 0.88);
+}
+
+.hud-list-comp li::before {
+    content: '►';
+    position: absolute;
+    left: 0;
+    color: #00f0ff;
+    font-size: 0.6rem;
+    top: 2px;
+}
+
+.hud-list-comp strong {
+    color: #00f0ff;
+}
+
+/* =========================================
+   ANIMATIONS
+========================================= */
+@keyframes hudPopInComp {
+    0% {
+        opacity: 0;
+        transform: translate(-50%, -46%) scale(0.92);
+        filter: blur(8px);
+    }
+    100% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+        filter: blur(0);
+    }
+}
+
+@keyframes hudPopOutComp {
+    0% {
+        opacity: 1;
+        transform: translate(-50%, -50%) scale(1);
+        filter: blur(0);
+    }
+    100% {
+        opacity: 0;
+        transform: translate(-50%, -46%) scale(0.92);
+        filter: blur(8px);
+    }
+}
+
+/*====================================================
+   MOBILE RESPONSIVE — COMPUTER / E-LIBRARY HUD SUBPAGE
+   (new addition; does not modify any existing
+   max-width:480px rule elsewhere in the project)
+====================================================*/
+
+@media (max-width:600px){
+
+    .hud-subpage-comp{
+        position:fixed;
+        top:50%;
+        left:50%;
+        width:calc(100% - 20px);
+        max-width:none;
+        max-height:calc(100vh - 20px);
+        transform:translate(-50%, -50%);
+        box-sizing:border-box;
+    }
+
+    .hud-subpage-inner-comp{
+        width:100%;
+        gap:7px;
+        box-sizing:border-box;
+    }
+
+    .hud-top-bar-comp{
+        flex-direction:column;
+        align-items:stretch;
+        gap:7px;
+        padding:7px 8px;
+        margin-top:0;
+        box-sizing:border-box;
+    }
+
+    .hud-btn-red-comp{
+        width:100%;
+        justify-content:center;
+        font-size:10px;
+        padding:7px 0;
+        box-sizing:border-box;
+    }
+
+    .hud-pagination-comp{
+        width:100%;
+        justify-content:center;
+        gap:8px;
+    }
+
+    .hud-nav-btn-comp{
+        flex:1;
+        text-align:center;
+        font-size:9px;
+        padding:7px 0;
+        box-sizing:border-box;
+    }
+
+    .hud-page-indicator-comp{
+        font-size:9px;
+    }
+
+    .hud-content-card-comp{
+        width:100%;
+        height:calc(100vh - 120px);
+        max-height:410px;
+        min-height:260px;
+        padding:14px;
+        box-sizing:border-box;
+    }
+
+    .hud-card-title-comp{
+        font-size:14px;
+        margin-bottom:10px;
+    }
+
+    .hud-card-body-comp{
+        font-size:11px;
+        line-height:1.5;
+    }
+
+    .hud-text-highlight-comp{
+        font-size:11px;
+    }
+
+    .hud-list-comp li{
+        font-size:11px;
+        padding-left:14px;
+        margin-bottom:6px;
+    }
+
+}

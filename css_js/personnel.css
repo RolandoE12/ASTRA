@@ -1,0 +1,408 @@
+/* =====================================================
+   CGCI PERSONNEL — PUBLIC ORGANIZATIONAL CHART
+   Inspired by the supplied CGCI organizational-chart layout.
+===================================================== */
+
+.personnel-page,
+.personnel-details-page{
+    display:none;
+    position:absolute;
+    inset:0 0 100px 0;
+    padding:34px 42px;
+    overflow-y:auto;
+    overflow-x:hidden;
+}
+
+.personnel-page h2,
+.personnel-details-page h2{
+    margin:0;
+    text-align:center;
+    color:#0b5b20;
+    font-size:34px;
+    font-weight:900;
+    letter-spacing:1px;
+    text-shadow:none;
+}
+
+.personnel-page-subtitle{
+    margin:8px auto 26px;
+    text-align:center;
+    color:#51665a;
+    font-size:14px;
+}
+
+#backPersonnel,
+#backDepartment{
+    position:absolute;
+    top:24px;
+    left:28px;
+    z-index:50;
+    min-width:110px;
+    height:40px;
+    padding:0 18px;
+    border:1px solid #08752b;
+    border-radius:7px;
+    background:#075a20;
+    color:#fff;
+    font-family:'Orbitron',sans-serif;
+    font-size:12px;
+    font-weight:800;
+    letter-spacing:1px;
+    cursor:pointer;
+    box-shadow:0 4px 14px rgba(0,70,25,.2);
+    transition:.25s;
+}
+
+#backPersonnel:hover,
+#backDepartment:hover{
+    background:#0b7b2f;
+    transform:translateY(-2px);
+}
+
+/* =====================================================
+   DEPARTMENT SELECTION
+===================================================== */
+
+.personnel-cards{
+    width:min(1100px,100%);
+    margin:0 auto;
+    display:grid;
+    grid-template-columns:repeat(3,minmax(0,1fr));
+    gap:22px;
+}
+
+.personnel-department-card{
+    min-height:190px;
+    background:#fff;
+    border:2px solid #0b6728;
+    border-radius:14px;
+    overflow:hidden;
+    cursor:pointer;
+    box-shadow:0 8px 22px rgba(0,70,25,.13);
+    transition:.25s;
+}
+
+.personnel-department-card:hover{
+    transform:translateY(-5px);
+    box-shadow:0 14px 30px rgba(0,70,25,.2);
+}
+
+.personnel-department-card img{
+    width:100%;
+    height:135px;
+    display:block;
+    object-fit:contain;
+    background:#fff;
+}
+
+.department-name{
+    min-height:55px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding:8px 12px;
+    color:#075a20;
+    background:#f7fbf7;
+    border-top:1px solid #d8e9dc;
+    font-size:15px;
+    font-weight:900;
+    text-align:center;
+}
+
+/* =====================================================
+   ORGANIZATIONAL CHART PAGE
+===================================================== */
+
+.personnel-details-page{
+    background:
+        linear-gradient(rgba(255,255,255,.96),rgba(255,255,255,.96)),
+        repeating-linear-gradient(45deg,#edf4ee 0,#edf4ee 2px,transparent 2px,transparent 13px);
+    overflow-x:hidden;
+    box-sizing:border-box;
+}
+
+.org-chart-header{
+    width:min(1250px,100%);
+    margin:0 auto 12px;
+    padding:4px 30px 10px;
+    text-align:center;
+    box-sizing:border-box;
+}
+
+.org-chart-brand{color:#111;font-size:12px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:3px}
+.org-chart-header h2{color:#0a6424;font-size:31px;text-transform:uppercase;margin:0}
+.org-chart-header p{margin:6px auto 0;color:#33473a;font-size:14px;max-width:850px}
+
+.org-chart-toolbar{
+    width:min(1250px,100%);
+    margin:0 auto 12px;
+    padding:0 10px;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:10px;
+    color:#0a6424;
+    font-size:12px;
+    font-weight:900;
+    letter-spacing:1px;
+    box-sizing:border-box;
+}
+
+.org-chart-toolbar button{
+    border:1px solid #0a6424;
+    background:#fff;
+    color:#0a6424;
+    border-radius:6px;
+    padding:7px 11px;
+    font-size:10px;
+    font-weight:900;
+    cursor:pointer;
+}
+
+/* The chart itself never becomes wider than the visible panel. */
+.org-chart-scroll{
+    width:100%;
+    max-width:100%;
+    overflow-x:hidden;
+    overflow-y:auto;
+    padding:8px 10px 45px;
+    box-sizing:border-box;
+}
+
+.department-personnel{
+    width:100%;
+    max-width:1250px;
+    margin:0 auto;
+    box-sizing:border-box;
+}
+
+.org-chart-canvas{
+    width:100%;
+    max-width:100%;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    padding:15px 4px 55px;
+    box-sizing:border-box;
+}
+
+/* Highest-ranked employee: always alone at the top. */
+.org-level{width:100%;display:flex;justify-content:center;box-sizing:border-box}
+.org-top-level{position:relative}
+
+.org-person{
+    position:relative;
+    z-index:2;
+    width:100%;
+    max-width:190px;
+    min-height:225px;
+    padding:14px 10px 12px;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:flex-start;
+    background:#fff;
+    border:2px solid #0a6424;
+    border-radius:7px;
+    box-shadow:0 5px 16px rgba(0,70,25,.13);
+    box-sizing:border-box;
+}
+
+.org-person-head{width:220px;max-width:220px;min-height:245px;border-width:3px}
+
+.org-photo-ring{
+    width:132px;
+    height:132px;
+    padding:4px;
+    border-radius:50%;
+    background:#075a20;
+    border:5px solid #0a6424;
+    overflow:hidden;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    box-sizing:border-box;
+    flex:0 0 auto;
+}
+
+.org-person-head .org-photo-ring{width:145px;height:145px}
+.org-photo-ring img{width:100%;height:100%;border-radius:50%;object-fit:cover;background:#eef5ef;display:block}
+
+.org-person-label{
+    width:100%;
+    margin-top:10px;
+    padding:9px 7px;
+    border-radius:4px;
+    background:#075a20;
+    color:#fff;
+    text-align:center;
+    box-sizing:border-box;
+}
+
+.org-person-label strong{display:block;font-size:12px;line-height:1.2;font-weight:900;text-transform:uppercase;overflow-wrap:anywhere}
+.org-person-label span{display:block;margin-top:4px;font-size:10px;line-height:1.2;color:#fff;font-weight:600;overflow-wrap:anywhere}
+
+/* Connector from the highest position to the first employee row. */
+.org-main-connector{width:2px;height:28px;background:#0a6424;flex:0 0 28px}
+
+/* Every lower row has EXACTLY five grid slots. Empty slots keep the row centered. */
+.org-level-row-wrap{
+    width:100%;
+    max-width:1160px;
+    position:relative;
+    box-sizing:border-box;
+    padding-top:30px;
+}
+
+.org-row-connector{
+    position:absolute;
+    top:0;
+    left:10%;
+    right:10%;
+    height:2px;
+    background:#0a6424;
+}
+
+.org-level-row-wrap + .org-level-row-wrap{margin-top:34px}
+.org-level-row-wrap + .org-level-row-wrap::before{
+    content:"";
+    position:absolute;
+    top:-34px;
+    left:50%;
+    width:2px;
+    height:34px;
+    background:#0a6424;
+}
+
+.org-level-row{
+    width:100%;
+    display:grid;
+    grid-template-columns:repeat(5,minmax(0,1fr));
+    gap:14px;
+    align-items:start;
+    box-sizing:border-box;
+}
+
+.org-level-cell{
+    min-width:0;
+    width:100%;
+    display:flex;
+    justify-content:center;
+    position:relative;
+    box-sizing:border-box;
+}
+
+.org-level-cell::before{
+    content:"";
+    position:absolute;
+    top:-30px;
+    left:50%;
+    width:2px;
+    height:30px;
+    background:#0a6424;
+}
+
+.org-level-cell-empty::before{display:none}
+.org-level-row .org-person{max-width:190px;width:100%}
+
+@media(max-width:1100px){
+    .org-level-row{gap:8px}
+    .org-level-row-wrap{max-width:100%}
+    .org-level-row .org-person{max-width:170px;padding:10px 7px}
+    .org-photo-ring{width:105px;height:105px;border-width:4px}
+    .org-person-head .org-photo-ring{width:125px;height:125px}
+    .org-person{min-height:195px}
+    .org-person-head{min-height:215px}
+    .org-person-label{margin-top:7px;padding:7px 5px}
+    .org-person-label strong{font-size:10px}
+    .org-person-label span{font-size:9px}
+}
+
+@media(max-width:700px){
+    .org-chart-header{padding-left:8px;padding-right:8px}
+    .org-chart-header h2{font-size:22px}
+    .org-chart-brand{font-size:10px}
+    .org-chart-header p{font-size:11px}
+    .org-chart-toolbar{padding:0 4px}
+    .org-chart-scroll{padding-left:4px;padding-right:4px}
+    .org-chart-canvas{padding-left:0;padding-right:0}
+    .org-level-row{gap:3px}
+    .org-level-row-wrap{padding-top:22px}
+    .org-level-cell::before{top:-22px;height:22px}
+    .org-row-connector{left:10%;right:10%}
+    .org-level-row-wrap + .org-level-row-wrap{margin-top:26px}
+    .org-level-row-wrap + .org-level-row-wrap::before{top:-26px;height:26px}
+    .org-level-row .org-person{max-width:none;min-height:145px;padding:6px 3px;border-width:1px;border-radius:5px}
+    .org-level-row .org-photo-ring{width:72px;height:72px;border-width:3px;padding:2px}
+    .org-level-row .org-person-label{margin-top:5px;padding:5px 2px}
+    .org-level-row .org-person-label strong{font-size:7px}
+    .org-level-row .org-person-label span{font-size:6px}
+    .org-person-head{width:180px;max-width:180px;min-height:195px}
+    .org-person-head .org-photo-ring{width:110px;height:110px}
+}
+
+.empty-personnel{
+    min-width:320px;
+    margin:50px auto;
+    padding:35px;
+    display:flex;
+    flex-direction:column;
+    gap:8px;
+    align-items:center;
+    color:#52665a;
+    text-align:center;
+    background:#fff;
+    border:1px solid #c9ddce;
+    border-radius:10px;
+}
+
+.empty-personnel i{
+    font-size:30px;
+    color:#0a6424;
+}
+
+.empty-personnel strong{
+    color:#0a6424;
+    font-size:17px;
+}
+
+/* =====================================================
+   RESPONSIVE
+===================================================== */
+
+@media(max-width:1100px){
+    .personnel-cards{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .org-chart-header{padding-left:75px;padding-right:75px}
+}
+
+@media(max-width:700px){
+    .personnel-page,
+    .personnel-details-page{padding:58px 12px 25px}
+
+    .personnel-page h2,
+    .personnel-details-page h2{font-size:23px}
+
+    .personnel-cards{grid-template-columns:1fr;gap:14px}
+    .personnel-department-card{min-height:150px}
+    .personnel-department-card img{height:100px}
+    .department-name{min-height:50px;font-size:13px}
+
+    .org-chart-header{padding:5px 8px 10px}
+    .org-chart-header h2{font-size:22px}
+    .org-chart-brand{font-size:10px}
+    .org-chart-header p{font-size:11px}
+    .org-chart-toolbar{padding:0 5px}
+
+    #backPersonnel,#backDepartment{top:18px;left:10px;min-width:82px;height:34px;padding:0 10px;font-size:9px}
+
+    .org-chart-canvas{padding-left:2px;padding-right:2px}
+    .org-children-row{gap:5px;padding-left:0;padding-right:0}
+    .org-person{width:100%;min-height:175px;padding:8px 4px}
+    .org-person-head{width:210px;min-height:215px}
+    .org-photo-ring{width:88px;height:88px;border-width:3px}
+    .org-person-head .org-photo-ring{width:120px;height:120px}
+    .org-person-label{padding:7px 3px}
+    .org-person-label strong{font-size:8px}
+    .org-person-label span{font-size:7px}
+    .org-children{gap:20px}
+}

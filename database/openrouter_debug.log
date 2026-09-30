@@ -1,0 +1,5 @@
+[2026-08-26 02:25:16] FAILED (HTTP 401): {"error":{"message":"Missing Authentication header","code":401}}
+[2026-08-26 02:25:57] FAILED (HTTP 401): {"error":{"message":"Missing Authentication header","code":401}}
+[2026-08-26 02:26:55] FAILED (HTTP 401): {"error":{"message":"Missing Authentication header","code":401}}
+[2026-08-26 02:37:35] FAILED: API key was not replaced in openrouter.php.
+[2026-08-26 02:37:44] FAILED: API key was not replaced in openrouter.php.

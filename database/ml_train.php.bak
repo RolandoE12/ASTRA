@@ -1,0 +1,73 @@
+<?php
+if (PHP_SAPI !== 'cli') {
+    session_start();
+    if (!isset($_SESSION['admin'])) {
+        http_response_code(403);
+        exit('Admin access required.');
+    }
+}
+
+$csvPath = __DIR__ . '/ml_dataset.csv';
+$modelPath = __DIR__ . '/ml/ml_model.json';
+
+if (!is_file($csvPath)) exit('Training dataset not found.');
+
+$handle = fopen($csvPath, 'r');
+$header = fgetcsv($handle);
+$rows = [];
+while (($row = fgetcsv($handle)) !== false) {
+    if (count($row) >= 2 && trim($row[0]) !== '' && trim($row[1]) !== '') {
+        $rows[] = ['intent' => trim($row[0]), 'text' => trim($row[1])];
+    }
+}
+fclose($handle);
+
+function trainNormalize($text) {
+    $text = strtolower(html_entity_decode((string)$text));
+    $text = preg_replace('/[^a-z0-9\s]/', ' ', $text);
+    $text = preg_replace('/\s+/', ' ', trim($text));
+    return $text;
+}
+function trainTokens($text) {
+    $stop = ['the','a','an','is','are','was','were','what','where','when','why','how','can','could','would','will','please','tell','show','give','me','about','to','for','of','do','does','did','my','your','i','am','im','and','or','in','on','at','from','with','this','that','it','there','any','have','has','ako','ba','nga','po','naman','lang','si','ang','yung','ito','na'];
+    $words = preg_split('/\s+/', trainNormalize($text));
+    $tokens = [];
+    foreach ($words as $word) if ($word !== '' && strlen($word) >= 2 && !in_array($word, $stop, true)) $tokens[] = $word;
+    return $tokens;
+}
+
+$classes = [];
+$classDocs = [];
+$classTotalWords = [];
+$wordCounts = [];
+$vocabulary = [];
+foreach ($rows as $row) {
+    $class = $row['intent'];
+    $classes[$class] = true;
+    $classDocs[$class] = ($classDocs[$class] ?? 0) + 1;
+    $wordCounts[$class] = $wordCounts[$class] ?? [];
+    $tokens = trainTokens($row['text']);
+    foreach ($tokens as $token) {
+        $vocabulary[$token] = true;
+        $wordCounts[$class][$token] = ($wordCounts[$class][$token] ?? 0) + 1;
+        $classTotalWords[$class] = ($classTotalWords[$class] ?? 0) + 1;
+    }
+}
+
+$model = [
+    'algorithm' => 'Multinomial Naive Bayes',
+    'version' => 1,
+    'trained_at' => date('c'),
+    'alpha' => 1.0,
+    'total_docs' => count($rows),
+    'classes' => array_keys($classes),
+    'class_docs' => $classDocs,
+    'class_total_words' => $classTotalWords,
+    'vocabulary' => array_keys($vocabulary),
+    'word_counts' => $wordCounts
+];
+
+file_put_contents($modelPath, json_encode($model, JSON_PRETTY_PRINT | JSON_UNESCAPED_SLASHES));
+
+echo '<!doctype html><meta charset="utf-8"><title>ASTRA ML Training</title><style>body{font-family:Segoe UI,sans-serif;background:#07131f;color:#fff;padding:40px} .card{max-width:700px;margin:auto;padding:30px;border-radius:18px;background:#102333}h1{margin-top:0}code{background:#07131f;padding:3px 6px;border-radius:5px}</style><div class="card"><h1>ASTRA ML Model Trained</h1><p><b>Algorithm:</b> Multinomial Naive Bayes</p><p><b>Training examples:</b> '.count($rows).'</p><p><b>Intent classes:</b> '.count($classes).'</p><p><b>Vocabulary:</b> '.count($vocabulary).' terms</p><p><b>Model:</b> <code>ml/ml_model.json</code></p><p>The model is now used by ASTRA for intent prediction and ML-based recommendations.</p><p><a href="dashboard.php" style="color:#7ee7ff">Return to dashboard</a></p></div>';
+?>
